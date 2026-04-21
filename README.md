@@ -1,1 +1,1 @@
-based on Nanogpt from Karpathy, uses same input.txt file as the other llm stuff i have. It is shakespeare dataset.
+based on Nanogpt from Karpathy, uses same input.txt file as the other llm stuff i have. It is shakespeare dataset. The file efficientintrinsdimattention.py only reuses key, query, value, and outptu projections while efficientintrdim_ffwd.py also reuses the feedforward class linear layers. 
