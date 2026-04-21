@@ -20,7 +20,7 @@ print('device is: ', device)
 max_iters = 5_001
 eval_iters = 100
 eval_interval = 1_000
-n_embed = 256
+n_embed = 128
 block_size = 32
 batch_size = 12
 learning_rate = 5e-4
