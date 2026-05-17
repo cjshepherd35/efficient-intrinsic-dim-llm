@@ -23,8 +23,8 @@ step 5000: train loss 2.5772, val loss 2.9388
 efficientintrdim_incl_ffwd.py
 size of model (intrinsic dimensions adapted): 503440
 step 0: train loss 6.1359, val loss 6.1461
-step 1000: train loss 3.4831, val loss 3.6015
-step 2000: train loss 3.2486, val loss 3.4698
-step 3000: train loss 3.1221, val loss 3.3448
-step 4000: train loss 3.0162, val loss 3.2843
-step 5000: train loss 2.9382, val loss 3.2024
+step 1000: train loss 3.2813, val loss 3.4563
+step 2000: train loss 2.9590, val loss 3.2794
+step 3000: train loss 2.8345, val loss 3.1523
+step 4000: train loss 2.7558, val loss 3.0846
+step 5000: train loss 2.6956, val loss 3.0097
