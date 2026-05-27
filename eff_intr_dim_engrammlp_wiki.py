@@ -182,31 +182,6 @@ class EngramMLP(nn.Module):
         return torch.cat(results, dim=-1)
 
 
-class ShortConv(nn.Module):
-    def __init__(self, hidden_size, kernel_size=4, dilation=1):
-        super().__init__()
-        self.conv = nn.Conv1d(
-            in_channels=hidden_size,
-            out_channels=hidden_size,
-            kernel_size=kernel_size,
-            groups=hidden_size,
-            bias=False,
-            padding=(kernel_size - 1) * dilation,
-            dilation=dilation,
-        )
-        self.norm = nn.LayerNorm(hidden_size)
-        self.act_fn = nn.SiLU()
-
-    def forward(self, x):
-        B, T, D = x.shape
-        x_norm = self.norm(x)
-        x_bct = x_norm.transpose(1, 2)
-        y_bct = self.conv(x_bct)
-        y_bct = y_bct[..., :T]
-        y_bct = self.act_fn(y_bct)
-        y = y_bct.transpose(1, 2).contiguous()
-        return y
-
 
 class EngramLayer(nn.Module):
     def __init__(self, layer_id, n_embed):
@@ -219,11 +194,7 @@ class EngramLayer(nn.Module):
             max_ngram_size=engram_max_ngram_size,
             engram_n_embed_per_ngram=engram_n_embed_per_ngram
         )
-        # self.short_conv = ShortConv(
-        #     hidden_size=n_embed,
-        #     kernel_size=engram_kernel_size,
-        #     dilation=engram_max_ngram_size,
-        # )
+       
         engram_hidden_size = (engram_max_ngram_size - 1) * engram_n_embed_per_ngram
         self.value_proj = nn.Linear(engram_hidden_size, n_embed)
         self.key_proj = nn.Linear(engram_hidden_size, n_embed)
