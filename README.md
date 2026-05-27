@@ -2,6 +2,36 @@ This model uses shared matrices and updates a mutually exclusive subset of each 
 
 based on Nanogpt from Karpathy, uses same input.txt file as the other llm stuff i have. It is shakespeare dataset. The file efficientintrinsdimattention.py only reuses key, query, value, and outptu projections while efficientintrdim_ffwd.py also reuses the feedforward class linear layers. 
 
+
+****updated
+added files using wiki-103 dataset. timedwikikarpath.py is the standard transformer and I compare its losses with about 130 million parameters vs the newest test of weight reuse called eff_intr_dim_engrammlp_wiki.py, for efficient intrinsic dimension engram mlp. this model uses about 40 million parameters currently with almost the same losses at less than half the time. I should be able to decrease  the parameter count by using rmsnorm rather than a layernorm layer. 
+
+eff_intr_dim_engrammlp_wiki.py
+size of model 127638304 with 3e-4 lr
+step 0: train loss 6.8625, val loss 6.8738
+step 5000: train loss 3.0917, val loss 3.1901
+step 10000: train loss 2.8175, val loss 3.0213
+step 15000: train loss 2.6865, val loss 2.9243
+step 20000: train loss 2.6020, val loss 2.8335
+Training time: 3735.05 seconds
+
+eff_intr_dim_engrammlp_wiki.py with lr 1e-3
+size of model (intrinsic dimensions & engram adapted): 41581344
+step 0: train loss 6.8437, val loss 6.8366 (train time 0.65s)
+step 5000: train loss 3.0087, val loss 3.2218 (train time 360.73s)
+step 10000: train loss 2.8119, val loss 3.0808 (train time 723.23s)
+step 15000: train loss 2.7321, val loss 3.0028 (train time 1085.92s)
+step 20000: train loss 2.6782, val loss 3.0176 (train time 1449.85s)
+Total training time: 1449.88 seconds
+
+
+
+****
+
+
+
+
+
 regular karpathy bpe transformer
 size of model 1294480
 step 0: train loss 6.1343, val loss 6.1258
