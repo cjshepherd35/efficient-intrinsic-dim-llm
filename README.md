@@ -58,3 +58,22 @@ step 2000: train loss 2.9590, val loss 3.2794
 step 3000: train loss 2.8345, val loss 3.1523
 step 4000: train loss 2.7558, val loss 3.0846
 step 5000: train loss 2.6956, val loss 3.0097
+
+
+
+added newest version, heff_moe.py which with 40 million params is pretty equivalent to a comparable standard model with 400 mill params. 
+size of model 44370056
+size of model if weights were not reused across layers 223643784
+step 0: train loss 7.0990, val loss 7.0860
+step 5000: train loss 2.6543, val loss 3.0712
+step 10000: train loss 2.3880, val loss 3.0423
+step 15000: train loss 2.2444, val loss 3.0161
+step 20000: train loss 2.1480, val loss 2.9867
+Training time: 9629.79 seconds
+
+versus similar standard, multiheaded latent attention model with  mixture of experts called wikiv2frontier.py 
+size of model 433389704
+step 0: train loss 7.0819, val loss 7.0794
+step 5000: train loss 2.5302, val loss 3.0038
+step 10000: train loss 2.0188, val loss 3.0090
+step 15000: train loss 1.6367, val loss 3.1032
